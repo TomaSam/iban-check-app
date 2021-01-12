@@ -21,11 +21,11 @@ class IbanExport extends Component {
         console.log(this.state.action)
         if (this.state.action === "1") {
             IbanService.getExportValidation(this.state.path);
-            
+            alert("Check your directory: " + this.state.path);
         }
         else if (this.state.action === "2") {
             IbanService.getExportBankName(this.state.path);
-            
+            alert("Check your directory: " + this.state.path);
         }
     }
 

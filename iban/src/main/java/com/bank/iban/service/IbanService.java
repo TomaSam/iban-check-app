@@ -31,28 +31,28 @@ public class IbanService {
 	
 	private int computeReminder(String iban) {
 		String convertedIban = iban.substring(4) + initialCharacters + iban.subSequence(2, 4);
-		System.out.println("Converted string 1: " + convertedIban);
+//		System.out.println("Converted string 1: " + convertedIban);
 		BigInteger resultBig = new BigInteger(convertedIban).remainder(new BigInteger("97"));
-		System.out.println("ResultBig1: " + resultBig);
+//		System.out.println("ResultBig1: " + resultBig);
 		int result = resultBig.intValue();
-		System.out.println("Result1: " + result);
+//		System.out.println("Result1: " + result);
 		return result;
 	}
 	
 	private int checkTwoDigits(String iban) {
 		String convertedIban = iban.substring(4) + initialCharacters + "00";
-		System.out.println("Converted string 2: " + convertedIban);
-		System.out.println("parse: " + Integer.parseInt(iban.substring(2, 4)));
+//		System.out.println("Converted string 2: " + convertedIban);
+//		System.out.println("parse: " + Integer.parseInt(iban.substring(2, 4)));
 		BigInteger resultBig = new BigInteger(convertedIban).remainder(new BigInteger("97"));
-		System.out.println("ResultBig2: " + resultBig);
+//		System.out.println("ResultBig2: " + resultBig);
 		int result = 98 - resultBig.intValue();
-		System.out.println("Result2: " + result);
+//		System.out.println("Result2: " + result);
 		return result;
 	}
 	
 	public String recognizeBank(String iban) {
 		String bankCode = iban.substring(4, 9);
-		System.out.println(bankCode);
+//		System.out.println(bankCode);
 		if (iban.length() != 20) {
 			return iban + ";;";
 		} else {
@@ -86,9 +86,10 @@ public class IbanService {
 			validatedList.add(ibanRecord);
 		}
 		csvReader.close();
-		for (String[] iban : validatedList) {
-			System.out.println(iban[0]);
-		}
+		
+//		for (String[] iban : validatedList) {
+//			System.out.println(iban[0]);
+//		}
 		
 		String updatedPath = path + "_valid.csv";
 		File file = new File(updatedPath);
@@ -116,9 +117,10 @@ public class IbanService {
 			recognizedBankList.add(ibanRecord);
 		}
 		csvReader.close();
-		for (String[] iban : recognizedBankList) {
-			System.out.println(iban[0]);
-		}
+		
+//		for (String[] iban : recognizedBankList) {
+//			System.out.println(iban[0]);
+//		}
 		
 		String updatedPath = path + "_bank.csv";
 		File file = new File(updatedPath);

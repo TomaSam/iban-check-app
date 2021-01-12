@@ -17,27 +17,27 @@ class IbanForm extends Component {
 
     submitForm = (event) => {
         event.preventDefault();
-        console.log(this.state.iban);
-        console.log(this.state.action)
+        console.log("Iban: " + this.state.iban);
+        console.log("Action: " + this.state.action)
         if (this.state.action === "1") {
             IbanService.postIbanValidation(this.state.iban)
             .then((res) => {
-                const message = res.data;
-                console.log(message);
-            })
+                const response = res.data;
+                alert("Result: " + response);
+            });
         }
         else if (this.state.action === "2") {
             IbanService.postIbanBankName(this.state.iban)
             .then((res) => {
-                const message = res.data;
-                console.log(message);
-            }) 
+                const response = res.data;
+                console.log("Result: " + response); 
+            }); 
         }
-
     }
 
 render() {
     return (
+        <div>
         <form onSubmit={this.submitForm}>
         <div className="form-group">
             <label htmlFor="iban" className="col-form-label">
@@ -58,8 +58,8 @@ render() {
         <div className="form-group">
             <button type="submit" className="btn btn-light">Do it!</button>
         </div>
-        </form>       
-        
+        </form>         
+        </div>
     );
     
 }
